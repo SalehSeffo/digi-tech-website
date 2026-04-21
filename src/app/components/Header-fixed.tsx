@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { DigiTechIcon } from './DigiTechIcon';
 
 interface HeaderProps {
   language: 'de' | 'en';
@@ -37,10 +38,8 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center gap-8 lg:gap-12">
             <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <div className="w-10 h-10 bg-[#E8762C] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">G</span>
-              </div>
-              <span className="font-bold text-lg hidden sm:inline text-[#2D3E50]">GASTLY</span>
+              <DigiTechIcon size={40} />
+              <span className="font-bold text-lg hidden sm:inline text-[#2D3E50]">Digi-Tech</span>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">

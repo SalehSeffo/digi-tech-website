@@ -13,7 +13,7 @@ export function Testimonials({ language }: TestimonialsProps) {
       title: 'Was unsere Kunden sagen',
       testimonials: [
         {
-          text: 'GASTLY hat unsere gesamte Betriebsführung revolutioniert. Die Zeitersparnis ist enorm und wir können uns endlich auf das konzentrieren, was wirklich zählt – unsere Gäste.',
+          text: 'Digi-Tech hat unsere gesamte Betriebsführung revolutioniert. Die Zeitersparnis ist enorm und wir können uns endlich auf das konzentrieren, was wirklich zählt – unsere Gäste.',
           author: 'Maria Schmidt',
           role: 'Inhaberin, Bella Italia München',
         },
@@ -33,7 +33,7 @@ export function Testimonials({ language }: TestimonialsProps) {
       title: 'What Our Customers Say',
       testimonials: [
         {
-          text: 'GASTLY has revolutionized our entire operations. The time savings are enormous and we can finally focus on what really matters – our guests.',
+          text: 'Digi-Tech has revolutionized our entire operations. The time savings are enormous and we can finally focus on what really matters – our guests.',
           author: 'Maria Schmidt',
           role: 'Owner, Bella Italia Munich',
         },

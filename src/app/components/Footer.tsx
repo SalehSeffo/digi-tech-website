@@ -12,24 +12,24 @@ export function Footer({ language }: FooterProps) {
       careers: 'Karriere',
       blog: 'Blog',
       contact: 'Kontakt',
-      email: 'kontakt@gastly.de',
+      email: 'kontakt@degi-tech.de',
       phone: '+49 30 1234 5678',
       address: 'Musterstraße 123, 10115 Berlin, Deutschland',
       appStore: 'App Store',
       playStore: 'Google Play',
-      rights: '© 2026 GASTLY. Alle Rechte vorbehalten.',
+      rights: '© 2026 Digi-Tech. Alle Rechte vorbehalten.',
     },
     en: {
       about: 'About Us',
       careers: 'Careers',
       blog: 'Blog',
       contact: 'Contact',
-      email: 'contact@gastly.com',
+      email: 'contact@degi-tech.com',
       phone: '+49 30 1234 5678',
       address: 'Musterstraße 123, 10115 Berlin, Germany',
       appStore: 'App Store',
       playStore: 'Google Play',
-      rights: '© 2026 GASTLY. All rights reserved.',
+      rights: '© 2026 Digi-Tech. All rights reserved.',
     },
   };
 
@@ -42,7 +42,7 @@ export function Footer({ language }: FooterProps) {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <GastlyLogo size={40} variant="primary" />
-              <span className="font-bold text-lg text-[#2D3E50]">GASTLY</span>
+              <span className="font-bold text-lg text-[#2D3E50]">Digi-Tech</span>
             </div>
             <p className="text-sm text-muted-foreground">
               {language === 'de'
