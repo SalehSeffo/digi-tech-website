@@ -39,7 +39,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
           <div className="flex items-center gap-8 lg:gap-12">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <DigiTechIcon size={40} />
-              <span className="font-bold text-lg hidden sm:inline text-[#2D3E50]">Digi-Tech</span>
+              <span className="font-bold text-lg hidden sm:inline text-[#0EA5E9]">Digi-Tech</span>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">

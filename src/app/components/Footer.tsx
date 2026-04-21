@@ -42,7 +42,7 @@ export function Footer({ language }: FooterProps) {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <GastlyLogo size={40} variant="primary" />
-              <span className="font-bold text-lg text-[#2D3E50]">Digi-Tech</span>
+              <span className="font-bold text-lg text-[#0EA5E9]">Digi-Tech</span>
             </div>
             <p className="text-sm text-muted-foreground">
               {language === 'de'
