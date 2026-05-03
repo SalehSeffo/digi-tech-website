@@ -7,33 +7,33 @@ interface DifferentiatorsProps {
 export function Differentiators({ language }: DifferentiatorsProps) {
   const t = {
     de: {
-      title: 'Warum DEGI-TECH?',
-      telegram: {
-        title: 'Telegram-Berichte',
-        description: 'Erhalten Sie Echtzeit-Updates und Berichte direkt in Telegram – bleiben Sie immer informiert, egal wo Sie sind.',
+      title: 'Warum Gastly?',
+      reports: {
+        title: 'Tagesberichte',
+        description: 'Tagesberichte über Umsatz, Bestseller und den täglichen Überblick — direkt für den Chef mit persönlichem Zugang.',
       },
       pricing: {
-        title: 'Transparente Preise',
-        description: 'Keine versteckten Kosten. Bezahlen Sie nur für das, was Sie nutzen. Flexible Pläne für jede Restaurantgröße.',
+        title: 'Klare Pakete, faire Preise',
+        description: 'Wählen Sie das Modell, das zu Ihrer Betriebsgröße passt. Basis für kleine Cafés, Standard für typische Restaurants, Premium für große Betriebe.',
       },
       support: {
         title: 'Erstklassiger Support',
-        description: 'Deutschsprachiger Support rund um die Uhr. Wir verstehen Ihr Geschäft und sind immer für Sie da.',
+        description: 'Deutschsprachiger Support. Standard-Plan: Antwort innerhalb von 3 Stunden. Premium-Plan: Prioritäts-Support. Wir verstehen Ihr Geschäft.',
       },
     },
     en: {
-      title: 'Why DEGI-TECH?',
-      telegram: {
-        title: 'Telegram Reports',
-        description: 'Receive real-time updates and reports directly in Telegram – stay informed wherever you are.',
+      title: 'Why Gastly?',
+      reports: {
+        title: 'Daily Reports',
+        description: 'Daily reports on revenue, bestsellers, and overview – direct access for the chef with personal login.',
       },
       pricing: {
-        title: 'Transparent Pricing',
-        description: 'No hidden costs. Pay only for what you use. Flexible plans for every restaurant size.',
+        title: 'Clear Plans, Fair Prices',
+        description: 'Choose the model that fits your operation size. Basic for small cafes, Standard for typical restaurants, Premium for large operations.',
       },
       support: {
         title: 'First-Class Support',
-        description: '24/7 German-speaking support. We understand your business and are always there for you.',
+        description: 'German-speaking support. Standard Plan: response within 3 hours. Premium Plan: priority support. We understand your business.',
       },
     },
   };
@@ -41,7 +41,7 @@ export function Differentiators({ language }: DifferentiatorsProps) {
   const text = t[language];
 
   const items = [
-    { icon: Send, ...text.telegram },
+    { icon: Send, ...text.reports },
     { icon: Euro, ...text.pricing },
     { icon: HeadphonesIcon, ...text.support },
   ];

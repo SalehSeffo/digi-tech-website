@@ -14,18 +14,14 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
   const t = {
     de: {
       restaurant: 'Restaurantmanagement',
-      marketing: 'Marketing',
-      website: 'Website',
       pricing: 'Preise',
-      freeTrial: 'Kostenlos testen',
+      consult: 'Beraten Lassen',
       login: 'Anmelden',
     },
     en: {
       restaurant: 'Restaurant Management',
-      marketing: 'Marketing',
-      website: 'Website',
       pricing: 'Pricing',
-      freeTrial: 'Free Trial',
+      consult: 'Get Consultation',
       login: 'Login',
     },
   };
@@ -45,12 +41,6 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
             <nav className="hidden lg:flex items-center gap-8">
               <Link to="/restaurant-management" className="text-gray-700 hover:text-[#E8762C] transition-colors font-medium text-sm">
                 {text.restaurant}
-              </Link>
-              <Link to="/restaurant-marketing" className="text-gray-700 hover:text-[#E8762C] transition-colors font-medium text-sm">
-                {text.marketing}
-              </Link>
-              <Link to="/restaurant-website" className="text-gray-700 hover:text-[#E8762C] transition-colors font-medium text-sm">
-                {text.website}
               </Link>
               <Link to="/pricing" className="text-gray-700 hover:text-[#E8762C] transition-colors font-medium text-sm">
                 {text.pricing}
@@ -72,7 +62,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                 {text.login}
               </button>
               <Link to="/contact" className="px-6 py-2.5 bg-[#E8762C] text-white rounded-lg hover:bg-[#d46620] transition-colors font-medium text-sm">
-                {text.freeTrial}
+                {text.consult}
               </Link>
             </div>
 
@@ -97,20 +87,6 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                 {text.restaurant}
               </Link>
               <Link 
-                to="/restaurant-marketing" 
-                className="px-4 py-2 text-gray-700 hover:text-[#E8762C] hover:bg-gray-50 rounded-lg transition-colors" 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {text.marketing}
-              </Link>
-              <Link 
-                to="/restaurant-website" 
-                className="px-4 py-2 text-gray-700 hover:text-[#E8762C] hover:bg-gray-50 rounded-lg transition-colors" 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {text.website}
-              </Link>
-              <Link 
                 to="/pricing" 
                 className="px-4 py-2 text-gray-700 hover:text-[#E8762C] hover:bg-gray-50 rounded-lg transition-colors" 
                 onClick={() => setMobileMenuOpen(false)}
@@ -126,7 +102,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                   className="px-4 py-2 bg-[#E8762C] text-white rounded-lg hover:bg-[#d46620] transition-colors text-center font-medium" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {text.freeTrial}
+                  {text.consult}
                 </Link>
               </div>
             </nav>

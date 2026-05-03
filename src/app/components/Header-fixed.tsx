@@ -14,18 +14,14 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
   const t = {
     de: {
       restaurant: 'Restaurantmanagement',
-      marketing: 'Marketing',
-      website: 'Website',
       pricing: 'Preise',
-      freeTrial: 'Kostenlos testen',
+      consult: 'Beraten Lassen',
       login: 'Anmelden',
     },
     en: {
       restaurant: 'Restaurant Management',
-      marketing: 'Marketing',
-      website: 'Website',
       pricing: 'Pricing',
-      freeTrial: 'Free Trial',
+      consult: 'Get Consultation',
       login: 'Login',
     },
   };

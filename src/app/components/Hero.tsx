@@ -6,14 +6,14 @@ export function Hero({ language }: HeroProps) {
   const t = {
     de: {
       headline: 'Ihr Restaurant. Digitalisiert. Erfolgreich.',
-      subheadline: 'Die All-in-One-Plattform für modernes Restaurantmanagement in Deutschland, Österreich und der Schweiz',
-      cta1: 'Kostenlos testen',
+      subheadline: 'Gastly - Die All-in-One Plattform für modernes Restaurantmanagement',
+      cta1: 'Beraten Lassen',
       cta2: 'Demo ansehen',
     },
     en: {
       headline: 'Your Restaurant. Digitized. Successful.',
-      subheadline: 'The all-in-one platform for modern restaurant management in Germany, Austria, and Switzerland',
-      cta1: 'Start Free Trial',
+      subheadline: 'Gastly - The all-in-one platform for modern restaurant management',
+      cta1: 'Get Consultation',
       cta2: 'Watch Demo',
     },
   };
