@@ -1,0 +1,56 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#1a1a1a"/>
+
+  <!-- Left section - ZETTEL (dark) -->
+  <rect width="550" height="800" fill="#2a2a2a"/>
+
+  <!-- Right section - GASTLY (warm) -->
+  <rect x="550" width="650" height="800" fill="#3d3d2e"/>
+
+  <!-- Center divider -->
+  <line x1="600" y1="0" x2="600" y2="800" stroke="#fff" stroke-width="8"/>
+
+  <!-- LEFT SIDE - ZETTEL -->
+  <!-- Image placeholder (dark) -->
+  <rect x="30" y="80" width="490" height="380" fill="#1a1a1a" rx="8"/>
+
+  <!-- ZETTEL Title -->
+  <text x="275" y="520" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">ZETTEL</text>
+
+  <!-- Red underline -->
+  <rect x="150" y="540" width="250" height="6" fill="#ff4444" rx="3"/>
+
+  <!-- ZETTEL Subtitle -->
+  <text x="275" y="600" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">CHAOS. STRESS. FEHLER.</text>
+
+  <!-- RIGHT SIDE - GASTLY -->
+  <!-- Image placeholder (light) -->
+  <rect x="620" y="80" width="550" height="380" fill="#e8e4d0" rx="8"/>
+
+  <!-- Dashboard indicator -->
+  <text x="845" y="280" font-size="18" fill="#666" text-anchor="middle" font-family="Arial, sans-serif">Dashboard Interface</text>
+
+  <!-- GASTLY Title -->
+  <text x="845" y="520" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">GASTLY</text>
+
+  <!-- Green underline -->
+  <rect x="720" y="540" width="250" height="6" fill="#22c55e" rx="3"/>
+
+  <!-- GASTLY Subtitle -->
+  <text x="845" y="600" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">ÜBERSICHT. STRUKTUR. ZEIT.</text>
+
+  <!-- CENTER - VS CIRCLE -->
+  <circle cx="600" cy="280" r="50" fill="#ffffff" stroke="#000" stroke-width="3"/>
+  <text x="600" y="295" font-size="48" font-weight="bold" fill="#000" text-anchor="middle" font-family="Arial, sans-serif">VS.</text>
+
+  <!-- BOTTOM SECTION -->
+  <!-- Dark background for bottom text -->
+  <rect y="680" width="1200" height="120" fill="#000000" opacity="0.6"/>
+
+  <!-- Main question -->
+  <text x="600" y="735" font-size="56" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">ZETTEL ODER <tspan fill="#22c55e">GASTLY?</tspan></text>
+
+  <!-- Subtitle -->
+  <text x="600" y="785" font-size="28" fill="#cccccc" text-anchor="middle" font-family="Arial, sans-serif">Weniger Chaos. Mehr Überblick.</text>
+</svg>
