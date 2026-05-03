@@ -1,4 +1,4 @@
-import { Apple, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { GastlyLogo } from './GastlyLogo';
 
 interface FooterProps {
@@ -8,96 +8,76 @@ interface FooterProps {
 export function Footer({ language }: FooterProps) {
   const t = {
     de: {
-      about: 'Über uns',
-      careers: 'Karriere',
-      blog: 'Blog',
-      contact: 'Kontakt',
-      email: 'degitech.kontakt@gmail.com',
-      phone: '+49 30 1234 5678',
-      address: 'Musterstraße 123, 10115 Berlin, Deutschland',
-      appStore: 'App Store',
-      playStore: 'Google Play',
-      rights: '© 2026 Digi-Tech. Alle Rechte vorbehalten.',
+      tagline: 'Die moderne Lösung für Ihr Restaurantmanagement.',
+      product: 'Produkt',
+      legal: 'Rechtliches',
+      links: {
+        management: 'Restaurantmanagement',
+        pricing: 'Preise',
+        contact: 'Kontakt',
+        agb: 'AGB',
+        impressum: 'Impressum',
+        datenschutz: 'Datenschutz',
+      },
+      rights: '© 2026 Degi-Tech. Alle Rechte vorbehalten.',
+      bavaria: 'Made with ❤️ in Bavaria',
     },
     en: {
-      about: 'About Us',
-      careers: 'Careers',
-      blog: 'Blog',
-      contact: 'Contact',
-      email: 'degitech.kontakt@gmail.com',
-      phone: '+49 30 1234 5678',
-      address: 'Musterstraße 123, 10115 Berlin, Germany',
-      appStore: 'App Store',
-      playStore: 'Google Play',
-      rights: '© 2026 Digi-Tech. All rights reserved.',
+      tagline: 'The modern solution for your restaurant management.',
+      product: 'Product',
+      legal: 'Legal',
+      links: {
+        management: 'Restaurant Management',
+        pricing: 'Pricing',
+        contact: 'Contact',
+        agb: 'Terms & Conditions',
+        impressum: 'Imprint',
+        datenschutz: 'Privacy Policy',
+      },
+      rights: '© 2026 Degi-Tech. All rights reserved.',
+      bavaria: 'Made with ❤️ in Bavaria',
     },
   };
 
   const text = t[language];
 
   return (
-    <footer className="bg-secondary/50 border-t border-border">
+    <footer className="bg-[#03045E] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <GastlyLogo size={40} variant="primary" />
-              <span className="font-bold text-lg text-[#0EA5E9]">Digi-Tech</span>
+              <span className="font-bold text-lg text-[#00B4D8]">Degi-Tech</span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              {language === 'de'
-                ? 'Die moderne Lösung für Ihr Restaurant.'
-                : 'The modern solution for your restaurant.'}
-            </p>
+            <p className="text-sm text-[#90E0EF]">{text.tagline}</p>
           </div>
 
+          {/* Product links */}
           <div>
-            <h4 className="font-semibold mb-4">{language === 'de' ? 'Unternehmen' : 'Company'}</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {text.about}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {text.careers}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {text.blog}
-                </a>
-              </li>
+            <h4 className="font-semibold mb-4 text-[#00B4D8]">{text.product}</h4>
+            <ul className="space-y-2 text-sm text-[#90E0EF]">
+              <li><Link to="/restaurant-management" className="hover:text-white transition-colors">{text.links.management}</Link></li>
+              <li><Link to="/pricing" className="hover:text-white transition-colors">{text.links.pricing}</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">{text.links.contact}</Link></li>
             </ul>
           </div>
 
+          {/* Legal links */}
           <div>
-            <h4 className="font-semibold mb-4">{text.contact}</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>{text.email}</li>
-              <li>{text.phone}</li>
-              <li>{text.address}</li>
+            <h4 className="font-semibold mb-4 text-[#00B4D8]">{text.legal}</h4>
+            <ul className="space-y-2 text-sm text-[#90E0EF]">
+              <li><Link to="/impressum" className="hover:text-white transition-colors">{text.links.impressum}</Link></li>
+              <li><Link to="/datenschutz" className="hover:text-white transition-colors">{text.links.datenschutz}</Link></li>
+              <li><Link to="/agb" className="hover:text-white transition-colors">{text.links.agb}</Link></li>
             </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4">{language === 'de' ? 'App laden' : 'Download App'}</h4>
-            <div className="space-y-3">
-              <button className="w-full flex items-center gap-3 px-4 py-2.5 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors">
-                <Apple className="w-5 h-5" />
-                <span className="text-sm">{text.appStore}</span>
-              </button>
-              <button className="w-full flex items-center gap-3 px-4 py-2.5 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors">
-                <Play className="w-5 h-5" />
-                <span className="text-sm">{text.playStore}</span>
-              </button>
-            </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          {text.rights}
+        <div className="pt-8 border-t border-[#0077B6] flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-[#90E0EF]">
+          <span>{text.rights}</span>
+          <span>{text.bavaria}</span>
         </div>
       </div>
     </footer>

@@ -15,14 +15,12 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
     de: {
       restaurant: 'Restaurantmanagement',
       pricing: 'Preise',
-      consult: 'Beraten Lassen',
-      login: 'Anmelden',
+      contact: 'Kontakt',
     },
     en: {
       restaurant: 'Restaurant Management',
       pricing: 'Pricing',
-      consult: 'Get Consultation',
-      login: 'Login',
+      contact: 'Contact',
     },
   };
 
@@ -35,14 +33,14 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
           <div className="flex items-center gap-8 lg:gap-12">
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <DigiTechIcon size={40} />
-              <span className="font-bold text-lg hidden sm:inline text-[#0EA5E9]">Digi-Tech</span>
+              <span className="font-bold text-lg hidden sm:inline text-[#0077B6]">Degi-Tech</span>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">
-              <Link to="/restaurant-management" className="text-gray-700 hover:text-[#E8762C] transition-colors font-medium text-sm">
+              <Link to="/restaurant-management" className="text-gray-700 hover:text-[#0077B6] transition-colors font-medium text-sm">
                 {text.restaurant}
               </Link>
-              <Link to="/pricing" className="text-gray-700 hover:text-[#E8762C] transition-colors font-medium text-sm">
+              <Link to="/pricing" className="text-gray-700 hover:text-[#0077B6] transition-colors font-medium text-sm">
                 {text.pricing}
               </Link>
             </nav>
@@ -57,14 +55,12 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
               <span className="text-2xl">{language === 'de' ? '🇩🇪' : '🇬🇧'}</span>
             </button>
 
-            <div className="hidden md:flex items-center gap-3">
-              <button className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors text-sm">
-                {text.login}
-              </button>
-              <Link to="/contact" className="px-6 py-2.5 bg-[#E8762C] text-white rounded-lg hover:bg-[#d46620] transition-colors font-medium text-sm">
-                {text.consult}
-              </Link>
-            </div>
+            <Link
+              to="/contact"
+              className="hidden md:inline-flex items-center px-4 py-2 bg-[#03045E] hover:bg-[#0077B6] text-white text-sm font-semibold rounded-xl transition-colors"
+            >
+              {text.contact}
+            </Link>
 
             <button
               className="lg:hidden p-2"
@@ -79,32 +75,27 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col gap-2">
-              <Link 
-                to="/restaurant-management" 
-                className="px-4 py-2 text-gray-700 hover:text-[#E8762C] hover:bg-gray-50 rounded-lg transition-colors" 
+              <Link
+                to="/restaurant-management"
+                className="px-4 py-2 text-gray-700 hover:text-[#0077B6] hover:bg-gray-50 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {text.restaurant}
               </Link>
-              <Link 
-                to="/pricing" 
-                className="px-4 py-2 text-gray-700 hover:text-[#E8762C] hover:bg-gray-50 rounded-lg transition-colors" 
+              <Link
+                to="/pricing"
+                className="px-4 py-2 text-gray-700 hover:text-[#0077B6] hover:bg-gray-50 rounded-lg transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {text.pricing}
               </Link>
-              <div className="flex flex-col gap-2 px-4 pt-2">
-                <button className="px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
-                  {text.login}
-                </button>
-                <Link 
-                  to="/contact" 
-                  className="px-4 py-2 bg-[#E8762C] text-white rounded-lg hover:bg-[#d46620] transition-colors text-center font-medium" 
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {text.consult}
-                </Link>
-              </div>
+              <Link
+                to="/contact"
+                className="px-4 py-2 text-gray-700 hover:text-[#0077B6] hover:bg-gray-50 rounded-lg transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {text.contact}
+              </Link>
             </nav>
           </div>
         )}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
 
 interface CookieConsentProps {
   language?: 'de' | 'en';
@@ -10,217 +9,159 @@ interface CookieConsentProps {
 export function CookieConsent({ language = 'de' }: CookieConsentProps) {
   const [showBanner, setShowBanner] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [cookies, setCookies] = useState({ necessary: true, analytics: false, marketing: false });
 
-  const translations = {
+  const t = {
     de: {
-      title: 'Cookie-Einstellungen',
-      description: 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern, unsere Website zu optimieren und Ihnen personalisierte Inhalte anzubieten.',
+      title: 'Wir verwenden Cookies',
+      description: 'Um unsere Website optimal zu betreiben und Ihnen das beste Erlebnis zu bieten, verwenden wir Cookies. Notwendige Cookies sind immer aktiv.',
       necessary: 'Notwendige Cookies',
-      necessaryDesc: 'Für den Betrieb der Website erforderlich. Können nicht deaktiviert werden.',
+      necessaryDesc: 'Für den Betrieb der Website erforderlich. Immer aktiv.',
       analytics: 'Analyse-Cookies',
-      analyticsDesc: 'Helfen uns zu verstehen, wie Sie unsere Website nutzen.',
+      analyticsDesc: 'Helfen uns zu verstehen, wie Sie unsere Website nutzen (z.B. Google Analytics).',
       marketing: 'Marketing-Cookies',
-      marketingDesc: 'Für personalisierte Werbung und Retargeting-Kampagnen.',
+      marketingDesc: 'Ermöglichen personalisierte Inhalte und Werbung.',
       acceptAll: 'Alle akzeptieren',
-      rejectAll: 'Nur notwendig',
+      acceptNecessary: 'Nur notwendige',
       settings: 'Einstellungen',
-      save: 'Speichern',
-      moreInfo: 'Mehr Informationen',
+      save: 'Auswahl speichern',
+      privacy: 'Datenschutz',
     },
     en: {
-      title: 'Cookie Settings',
-      description: 'We use cookies to improve your experience, optimize our website, and provide personalized content.',
+      title: 'We use Cookies',
+      description: 'To operate our website optimally and provide you the best experience, we use cookies. Necessary cookies are always active.',
       necessary: 'Necessary Cookies',
-      necessaryDesc: 'Required for the operation of the website. Cannot be disabled.',
+      necessaryDesc: 'Required to operate the website. Always active.',
       analytics: 'Analytics Cookies',
-      analyticsDesc: 'Help us understand how you use our website.',
+      analyticsDesc: 'Help us understand how you use our website (e.g. Google Analytics).',
       marketing: 'Marketing Cookies',
-      marketingDesc: 'For personalized advertising and retargeting campaigns.',
+      marketingDesc: 'Enable personalized content and advertising.',
       acceptAll: 'Accept All',
-      rejectAll: 'Only Necessary',
+      acceptNecessary: 'Necessary Only',
       settings: 'Settings',
-      save: 'Save',
-      moreInfo: 'More Information',
+      save: 'Save Selection',
+      privacy: 'Privacy Policy',
     },
   };
 
-  const t = translations[language] || translations.de;
+  const text = t[language] || t.de;
 
-  const [cookies, setCookies] = useState({
-    necessary: true,
-    analytics: false,
-    marketing: false,
-  });
-
-  // Check if user has already made a choice
   useEffect(() => {
-    const savedCookieChoice = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('cookie_consent='));
-
-    if (!savedCookieChoice) {
+    const saved = document.cookie.split('; ').find(r => r.startsWith('cookie_consent='));
+    if (!saved) {
       setShowBanner(true);
     } else {
       try {
-        const choice = JSON.parse(decodeURIComponent(savedCookieChoice.split('=')[1]));
-        setCookies(choice);
-      } catch (e) {
+        setCookies(JSON.parse(decodeURIComponent(saved.split('=')[1])));
+      } catch {
         setShowBanner(true);
       }
     }
   }, []);
 
-  const saveCookieChoice = (choice: typeof cookies) => {
-    const expiryDate = new Date();
-    expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-
-    document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(choice))}; path=/; expires=${expiryDate.toUTCString()}`;
+  const save = (choice: typeof cookies) => {
+    const exp = new Date();
+    exp.setFullYear(exp.getFullYear() + 1);
+    document.cookie = `cookie_consent=${encodeURIComponent(JSON.stringify(choice))}; path=/; expires=${exp.toUTCString()}`;
     setCookies(choice);
     setShowBanner(false);
     setShowDetails(false);
-  };
-
-  const handleAcceptAll = () => {
-    saveCookieChoice({
-      necessary: true,
-      analytics: true,
-      marketing: true,
-    });
-  };
-
-  const handleRejectAll = () => {
-    saveCookieChoice({
-      necessary: true,
-      analytics: false,
-      marketing: false,
-    });
-  };
-
-  const handleSaveSettings = () => {
-    saveCookieChoice(cookies);
   };
 
   if (!showBanner) return null;
 
   return (
     <>
-      {/* Overlay */}
-      <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setShowBanner(false)} />
+      {/* Non-dismissable overlay — user must make a choice */}
+      <div className="fixed inset-0 bg-[#03045E]/60 backdrop-blur-sm z-40" />
 
-      {/* Cookie Banner */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 max-h-screen overflow-y-auto">
-        <div className="bg-white shadow-2xl rounded-t-xl md:rounded-xl md:max-w-2xl md:mx-auto md:mb-4 md:mr-4 md:bottom-4 md:right-4 md:left-auto">
-          {/* Close Button */}
-          <button
-            onClick={() => setShowBanner(false)}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"
-            aria-label="Close"
-          >
-            <X size={20} />
-          </button>
-
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:bottom-6 md:left-auto md:right-6 md:max-w-md">
+        <div className="bg-white rounded-t-2xl md:rounded-2xl shadow-2xl border border-[#CAF0F8]">
           {!showDetails ? (
-            // Main Banner
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-[#2D3E50] mb-3">{t.title}</h2>
-              <p className="text-gray-600 mb-6 text-sm md:text-base">{t.description}</p>
+            <div className="p-6">
+              <h2 className="text-lg font-bold text-[#03045E] mb-2">{text.title}</h2>
+              <p className="text-sm text-gray-600 mb-5">{text.description}</p>
 
-              <div className="flex flex-col gap-3 md:flex-row md:gap-3">
+              <div className="flex flex-col gap-2">
                 <button
-                  onClick={handleRejectAll}
-                  className="px-6 py-2 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium text-sm md:text-base"
+                  onClick={() => save({ necessary: true, analytics: true, marketing: true })}
+                  className="w-full py-3 bg-[#03045E] hover:bg-[#0077B6] text-white rounded-xl font-semibold text-sm transition-colors"
                 >
-                  {t.rejectAll}
+                  {text.acceptAll}
                 </button>
                 <button
                   onClick={() => setShowDetails(true)}
-                  className="px-6 py-2 border-2 border-[#E8762C] text-[#E8762C] rounded-lg hover:bg-orange-50 transition font-medium text-sm md:text-base"
+                  className="w-full py-3 border-2 border-[#00B4D8] text-[#03045E] hover:bg-[#CAF0F8] rounded-xl font-semibold text-sm transition-colors"
                 >
-                  {t.settings}
+                  {text.settings}
                 </button>
                 <button
-                  onClick={handleAcceptAll}
-                  className="px-6 py-2 bg-[#E8762C] text-white rounded-lg hover:bg-[#d46620] transition font-medium text-sm md:text-base"
+                  onClick={() => save({ necessary: true, analytics: false, marketing: false })}
+                  className="w-full py-2 text-gray-500 hover:text-[#03045E] text-sm transition-colors"
                 >
-                  {t.acceptAll}
+                  {text.acceptNecessary}
                 </button>
               </div>
 
-              <p className="text-xs text-gray-500 mt-4">
-                <a href="/privacy" className="underline hover:text-gray-700">
-                  {t.moreInfo}
-                </a>
+              <p className="text-xs text-gray-400 mt-4 text-center">
+                <a href="/datenschutz" className="underline hover:text-[#0077B6]">{text.privacy}</a>
               </p>
             </div>
           ) : (
-            // Detailed Settings
-            <div className="p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-[#2D3E50] mb-6">{t.title}</h2>
+            <div className="p-6">
+              <h2 className="text-lg font-bold text-[#03045E] mb-4">{text.settings}</h2>
 
-              {/* Cookie Categories */}
-              <div className="space-y-4 mb-6">
-                {/* Necessary */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 mb-1">{t.necessary}</h3>
-                      <p className="text-sm text-gray-600">{t.necessaryDesc}</p>
+              <div className="space-y-3 mb-5">
+                {/* Necessary — always on */}
+                <div className="border border-[#CAF0F8] rounded-xl p-3 bg-[#CAF0F8]/20">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-sm text-[#03045E]">{text.necessary}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{text.necessaryDesc}</p>
                     </div>
-                    <input
-                      type="checkbox"
-                      checked={true}
-                      disabled
-                      className="mt-1 w-5 h-5 cursor-not-allowed"
-                    />
+                    <div className="w-10 h-5 bg-[#0077B6] rounded-full flex-shrink-0 mt-0.5 opacity-60" />
                   </div>
                 </div>
 
                 {/* Analytics */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 mb-1">{t.analytics}</h3>
-                      <p className="text-sm text-gray-600">{t.analyticsDesc}</p>
+                <div className="border border-[#CAF0F8] rounded-xl p-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-sm text-[#03045E]">{text.analytics}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{text.analyticsDesc}</p>
                     </div>
-                    <input
-                      type="checkbox"
-                      checked={cookies.analytics}
-                      onChange={(e) => setCookies({ ...cookies, analytics: e.target.checked })}
-                      className="mt-1 w-5 h-5 cursor-pointer"
+                    <button
+                      onClick={() => setCookies(c => ({ ...c, analytics: !c.analytics }))}
+                      className={`w-10 h-5 rounded-full flex-shrink-0 mt-0.5 transition-colors ${cookies.analytics ? 'bg-[#0077B6]' : 'bg-gray-300'}`}
+                      aria-checked={cookies.analytics}
+                      role="switch"
                     />
                   </div>
                 </div>
 
                 {/* Marketing */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 mb-1">{t.marketing}</h3>
-                      <p className="text-sm text-gray-600">{t.marketingDesc}</p>
+                <div className="border border-[#CAF0F8] rounded-xl p-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-sm text-[#03045E]">{text.marketing}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{text.marketingDesc}</p>
                     </div>
-                    <input
-                      type="checkbox"
-                      checked={cookies.marketing}
-                      onChange={(e) => setCookies({ ...cookies, marketing: e.target.checked })}
-                      className="mt-1 w-5 h-5 cursor-pointer"
+                    <button
+                      onClick={() => setCookies(c => ({ ...c, marketing: !c.marketing }))}
+                      className={`w-10 h-5 rounded-full flex-shrink-0 mt-0.5 transition-colors ${cookies.marketing ? 'bg-[#0077B6]' : 'bg-gray-300'}`}
+                      aria-checked={cookies.marketing}
+                      role="switch"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Buttons */}
-              <div className="flex flex-col gap-3 md:flex-row md:justify-end md:gap-3">
-                <button
-                  onClick={() => setShowDetails(false)}
-                  className="px-6 py-2 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium"
-                >
-                  Zurück
+              <div className="flex gap-2">
+                <button onClick={() => setShowDetails(false)} className="flex-1 py-2.5 border border-gray-200 text-gray-600 rounded-xl text-sm hover:bg-gray-50 transition-colors">
+                  ← Zurück
                 </button>
-                <button
-                  onClick={handleSaveSettings}
-                  className="px-6 py-2 bg-[#E8762C] text-white rounded-lg hover:bg-[#d46620] transition font-medium"
-                >
-                  {t.save}
+                <button onClick={() => save(cookies)} className="flex-1 py-2.5 bg-[#03045E] hover:bg-[#0077B6] text-white rounded-xl text-sm font-semibold transition-colors">
+                  {text.save}
                 </button>
               </div>
             </div>
